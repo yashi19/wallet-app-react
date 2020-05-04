@@ -1,0 +1,32 @@
+image: node:alpine
+
+cache:
+  paths:
+    - node_modules
+
+stages:
+  - test
+  - deploy
+
+variables:
+  REACT_APP_WALLET_API_URL: "https://avengers-wallet-service-prod.herokuapp.com/"
+  REACT_APP_PUBLIC_URL: "/ep-04/project-simulation/avengers/wallet-web-app/"
+
+test:
+  stage: test
+  script:
+    - yarn install
+    - yarn test
+
+pages:
+  stage: deploy
+  script:
+    - yarn install
+    - yarn build
+    - rm -rf public
+    - mv build public
+  artifacts:
+    paths:
+      - public # mandatory, other folder won't work
+  only:
+    - master # or dev, the branch you want to publish

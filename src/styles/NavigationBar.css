@@ -1,0 +1,10 @@
+@media only screen and (max-width: 400px) {
+    #dashboard-link {
+        font-size: medium;
+        cursor: pointer;
+    }
+}
+
+.logo {
+    width: 100px;
+}
